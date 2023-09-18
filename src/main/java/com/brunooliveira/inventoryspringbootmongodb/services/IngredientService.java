@@ -28,4 +28,9 @@ public class IngredientService {
 	public Ingredient insert(Ingredient obj) {
 		return rep.insert(obj);
 	}
+	
+	public void delete(String id) {
+		findById(id);
+		rep.deleteById(id);
+	}
 }
