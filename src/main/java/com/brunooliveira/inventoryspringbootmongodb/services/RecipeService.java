@@ -33,4 +33,17 @@ public class RecipeService {
 		findById(id);
 		rep.deleteById(id);
 	}
+	
+	public Recipe update(Recipe obj) {
+		Recipe updatedRecipe = findById(obj.getId());
+		updateData(updatedRecipe, obj);
+		return rep.save(updatedRecipe);
+	}
+
+	private void updateData(Recipe updatedRecipe, Recipe obj) {
+		updatedRecipe.setName(obj.getName());
+		updatedRecipe.setQuantity(obj.getQuantity());
+		updatedRecipe.setIcon(obj.getIcon());
+		updatedRecipe.setIngredients(obj.getIngredients());
+	}
 }

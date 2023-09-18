@@ -33,4 +33,16 @@ public class IngredientService {
 		findById(id);
 		rep.deleteById(id);
 	}
+	
+	public Ingredient update(Ingredient obj) {
+		Ingredient updatedIngredient = findById(obj.getId());
+		updateData(updatedIngredient, obj);
+		return rep.save(updatedIngredient);
+	}
+
+	private void updateData(Ingredient updatedIngredient, Ingredient obj) {
+		updatedIngredient.setName(obj.getName());
+		updatedIngredient.setQuantity(obj.getQuantity());
+		updatedIngredient.setIcon(obj.getIcon());
+	}
 }
