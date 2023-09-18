@@ -25,4 +25,7 @@ public class RecipeService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
+	public Recipe insert(Recipe obj) {
+		return rep.insert(obj);
+	}
 }

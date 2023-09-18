@@ -24,4 +24,8 @@ public class IngredientService {
 		Optional<Ingredient> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
+	
+	public Ingredient insert(Ingredient obj) {
+		return rep.insert(obj);
+	}
 }
