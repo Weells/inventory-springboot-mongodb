@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class RecipesFolder implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private Integer icon;
@@ -46,11 +51,11 @@ public class RecipesFolder implements Serializable {
 		this.icon = icon;
 	}
 
-	public List<Recipe> getIngredients() {
+	public List<Recipe> getRecipes() {
 		return recipes;
 	}
 
-	public void setIngredients(List<Recipe> recipes) {
+	public void setRecipes(List<Recipe> recipes) {
 		this.recipes = recipes;
 	}
 
