@@ -36,6 +36,7 @@ public class Instantiation implements CommandLineRunner {
 		ingredientRepository.deleteAll();
 		ingredientsFolderRepository.deleteAll();
 		recipeRepository.deleteAll();
+		recipesFolderRepository.deleteAll();
 		
 		Ingredient ing1 = new Ingredient(null, "Plastico", 5, 2);
 		Ingredient ing2 = new Ingredient(null, "Papel", 10, 4);

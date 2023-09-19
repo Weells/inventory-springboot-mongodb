@@ -41,8 +41,8 @@ public class IngredientService {
 	}
 
 	private void updateData(Ingredient updatedIngredient, Ingredient obj) {
-		updatedIngredient.setName(obj.getName());
-		updatedIngredient.setQuantity(obj.getQuantity());
-		updatedIngredient.setIcon(obj.getIcon());
+		if(obj.getIngredientName() != null) updatedIngredient.setIngredientName(obj.getIngredientName());
+		if(obj.getQuantity() != null) updatedIngredient.setQuantity(obj.getQuantity());
+		if(obj.getIcon() != null) updatedIngredient.setIcon(obj.getIcon());
 	}
 }

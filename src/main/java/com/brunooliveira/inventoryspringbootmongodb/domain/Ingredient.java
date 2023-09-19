@@ -1,8 +1,6 @@
 package com.brunooliveira.inventoryspringbootmongodb.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
@@ -14,18 +12,16 @@ public class Ingredient implements Serializable {
 	
 	@Id
 	private String id;
-	private String name;
+	private String ingredientName;
 	private Integer quantity;
 	private Integer icon;
-	
-	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	public Ingredient() {
 	}
 
-	public Ingredient(String id, String name, Integer quantity, Integer icon) {
+	public Ingredient(String id, String ingredientName, Integer quantity, Integer icon) {
 		this.id = id;
-		this.name = name;
+		this.ingredientName = ingredientName;
 		this.quantity = quantity;
 		this.icon = icon;
 	}
@@ -38,12 +34,12 @@ public class Ingredient implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getIngredientName() {
+		return ingredientName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setIngredientName(String ingredientName) {
+		this.ingredientName = ingredientName;
 	}
 
 	public Integer getQuantity() {
@@ -60,14 +56,6 @@ public class Ingredient implements Serializable {
 
 	public void setIcon(Integer icon) {
 		this.icon = icon;
-	}
-
-	public List<Ingredient> getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(List<Ingredient> ingredients) {
-		this.ingredients = ingredients;
 	}
 
 	@Override

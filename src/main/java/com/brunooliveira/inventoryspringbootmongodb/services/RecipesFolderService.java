@@ -41,8 +41,8 @@ public class RecipesFolderService {
 	}
 
 	private void updateData(RecipesFolder updatedRecipesFolder, RecipesFolder obj) {
-		updatedRecipesFolder.setName(obj.getName());
-		updatedRecipesFolder.setIcon(obj.getIcon());
-		updatedRecipesFolder.setRecipes(obj.getRecipes());
+		if(obj.getRecipesFolderName() != null) updatedRecipesFolder.setRecipesFolderName(obj.getRecipesFolderName());
+		if(obj.getIcon() != null) updatedRecipesFolder.setIcon(obj.getIcon());
+		if(!obj.getRecipes().isEmpty()) updatedRecipesFolder.setRecipes(obj.getRecipes());
 	}
 }

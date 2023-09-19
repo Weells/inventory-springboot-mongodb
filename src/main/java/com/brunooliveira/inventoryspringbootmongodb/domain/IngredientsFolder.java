@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -14,16 +15,17 @@ public class IngredientsFolder implements Serializable {
 	
 	@Id
 	private String id;
-	private String name;
+	private String ingredientsFolderName;
 	private Integer icon;
 	
+	@DBRef
 	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	public IngredientsFolder() {}
 
-	public IngredientsFolder(String id, String name, Integer icon) {
+	public IngredientsFolder(String id, String ingredientsFolderName, Integer icon) {
 		this.id = id;
-		this.name = name;
+		this.ingredientsFolderName = ingredientsFolderName;
 		this.icon = icon;
 	}
 
@@ -35,12 +37,12 @@ public class IngredientsFolder implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getIngredientsFolderName() {
+		return ingredientsFolderName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setIngredientsFolderName(String ingredientsFolderName) {
+		this.ingredientsFolderName = ingredientsFolderName;
 	}
 
 	public Integer getIcon() {

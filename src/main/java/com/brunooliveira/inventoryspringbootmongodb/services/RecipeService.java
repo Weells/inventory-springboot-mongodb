@@ -41,9 +41,9 @@ public class RecipeService {
 	}
 
 	private void updateData(Recipe updatedRecipe, Recipe obj) {
-		updatedRecipe.setName(obj.getName());
-		updatedRecipe.setQuantity(obj.getQuantity());
-		updatedRecipe.setIcon(obj.getIcon());
-		updatedRecipe.setIngredients(obj.getIngredients());
+		if(obj.getRecipeName() != null) updatedRecipe.setRecipeName(obj.getRecipeName());
+		if(obj.getQuantity() != null) updatedRecipe.setQuantity(obj.getQuantity());
+		if(obj.getIcon() != null) updatedRecipe.setIcon(obj.getIcon());
+		if(!obj.getIngredients().isEmpty()) updatedRecipe.setIngredients(obj.getIngredients());
 	}
 }
