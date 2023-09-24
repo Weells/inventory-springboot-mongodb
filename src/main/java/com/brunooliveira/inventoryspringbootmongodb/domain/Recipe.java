@@ -17,7 +17,8 @@ public class Recipe implements Serializable {
 	private String id;
 	private String recipeName;
 	private Integer quantity;
-	private Integer icon;
+	private String icon;
+	private String description;
 	
 	@DBRef
 	List<Ingredient> ingredients = new ArrayList<>();
@@ -25,11 +26,12 @@ public class Recipe implements Serializable {
 	public Recipe() {
 	}
 
-	public Recipe(String id, String recipeName, Integer quantity, Integer icon, List<Ingredient> ingredients) {
+	public Recipe(String id, String recipeName, Integer quantity, String icon, String description, List<Ingredient> ingredients) {
 		this.id = id;
 		this.recipeName = recipeName;
 		this.quantity = quantity;
 		this.icon = icon;
+		this.description = description;
 		this.ingredients = ingredients;
 	}
 
@@ -57,11 +59,11 @@ public class Recipe implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Integer getIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setIcon(Integer icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
@@ -73,6 +75,14 @@ public class Recipe implements Serializable {
 		this.ingredients = ingredients;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -89,4 +99,5 @@ public class Recipe implements Serializable {
 		Recipe other = (Recipe) obj;
 		return Objects.equals(id, other.id);
 	}
+
 }

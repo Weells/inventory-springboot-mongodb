@@ -38,22 +38,22 @@ public class Instantiation implements CommandLineRunner {
 		recipeRepository.deleteAll();
 		recipesFolderRepository.deleteAll();
 		
-		Ingredient ing1 = new Ingredient(null, "Plastico", 5, 2);
-		Ingredient ing2 = new Ingredient(null, "Papel", 10, 4);
+		Ingredient ing1 = new Ingredient(null, "Plastico", 5, "plastic", "Plástico, tem seu nome originário do grego \"plastikos\" que significa - capaz de ser moldado, é um material de origem natural ou sintética, obtido a partir dos derivados de petróleo ou de fontes renováveis como a cana-de-açúcar ou o milho.");
+		Ingredient ing2 = new Ingredient(null, "Papel", 10, "paper", "O papel é um material constituído por elementos fibrosos de origem vegetal, geralmente distribuído sob a forma de folhas ou rolos.");
 		
 		ingredientRepository.saveAll(Arrays.asList(ing1, ing2));
 		
-		IngredientsFolder folder1 = new IngredientsFolder(null, "Pasta de ingredientes", 1);
+		IngredientsFolder folder1 = new IngredientsFolder(null, "Pasta de ingredientes", "atom");
 		folder1.getIngredients().addAll(Arrays.asList(ing1, ing2));
 		
 		ingredientsFolderRepository.saveAll(Arrays.asList(folder1));
 		
-		Recipe rec1 = new Recipe(null, "Sacola de presentes", 5, 29, Arrays.asList(ing1, ing2));
-		Recipe rec2 = new Recipe(null, "Caneca", 20, 33, Arrays.asList(ing1));
+		Recipe rec1 = new Recipe(null, "Sacola de presentes", 5, "bag", "Saco de tamanho pequeno ou médio, provido de alças e us. para transportar compras e objetos.", Arrays.asList(ing1, ing2));
+		Recipe rec2 = new Recipe(null, "Caneca", 20, "cup", "A caneca é um recipiente de líquidos semelhante a um copo, porém com uma alça denominada \"asa\". ", Arrays.asList(ing1));
 		
 		recipeRepository.saveAll(Arrays.asList(rec1, rec2));
 		
-		RecipesFolder folder2 = new RecipesFolder(null, "Pasta de receitas", 3);
+		RecipesFolder folder2 = new RecipesFolder(null, "Pasta de receitas", "bag");
 		folder2.getRecipes().addAll(Arrays.asList(rec1, rec2));
 		
 		recipesFolderRepository.saveAll(Arrays.asList(folder2));

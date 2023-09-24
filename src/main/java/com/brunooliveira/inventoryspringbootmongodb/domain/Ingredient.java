@@ -14,16 +14,18 @@ public class Ingredient implements Serializable {
 	private String id;
 	private String ingredientName;
 	private Integer quantity;
-	private Integer icon;
+	private String icon;
+	private String description;
 	
 	public Ingredient() {
 	}
 
-	public Ingredient(String id, String ingredientName, Integer quantity, Integer icon) {
+	public Ingredient(String id, String ingredientName, Integer quantity, String icon, String description) {
 		this.id = id;
 		this.ingredientName = ingredientName;
 		this.quantity = quantity;
 		this.icon = icon;
+		this.description = description;
 	}
 
 	public String getId() {
@@ -50,12 +52,20 @@ public class Ingredient implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Integer getIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setIcon(Integer icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
@@ -74,5 +84,4 @@ public class Ingredient implements Serializable {
 		Ingredient other = (Ingredient) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 }

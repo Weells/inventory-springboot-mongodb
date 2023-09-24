@@ -16,14 +16,14 @@ public class IngredientsFolder implements Serializable {
 	@Id
 	private String id;
 	private String ingredientsFolderName;
-	private Integer icon;
+	private String icon;
 	
 	@DBRef
 	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	public IngredientsFolder() {}
 
-	public IngredientsFolder(String id, String ingredientsFolderName, Integer icon) {
+	public IngredientsFolder(String id, String ingredientsFolderName, String icon) {
 		this.id = id;
 		this.ingredientsFolderName = ingredientsFolderName;
 		this.icon = icon;
@@ -45,11 +45,11 @@ public class IngredientsFolder implements Serializable {
 		this.ingredientsFolderName = ingredientsFolderName;
 	}
 
-	public Integer getIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setIcon(Integer icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
