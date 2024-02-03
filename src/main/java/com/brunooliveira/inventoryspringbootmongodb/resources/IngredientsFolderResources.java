@@ -21,7 +21,7 @@ import com.brunooliveira.inventoryspringbootmongodb.services.IngredientsFolderSe
 
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
-@RequestMapping(value="/ingredientsfolder")
+@RequestMapping(value="/ingredientsfolders")
 public class IngredientsFolderResources {
 	
 	@Autowired
