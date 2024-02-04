@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brunooliveira.inventoryspringbootmongodb.domain.AuthenticationDTO;
-import com.brunooliveira.inventoryspringbootmongodb.domain.LoginResponseDTO;
-import com.brunooliveira.inventoryspringbootmongodb.domain.RegisterDTO;
 import com.brunooliveira.inventoryspringbootmongodb.domain.User;
+import com.brunooliveira.inventoryspringbootmongodb.domain.dto.AuthenticationDTO;
+import com.brunooliveira.inventoryspringbootmongodb.domain.dto.LoginResponseDTO;
+import com.brunooliveira.inventoryspringbootmongodb.domain.dto.RegisterDTO;
 import com.brunooliveira.inventoryspringbootmongodb.domain.infra.security.TokenService;
 import com.brunooliveira.inventoryspringbootmongodb.repositories.UserRepository;
 
