@@ -24,7 +24,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 	
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -32,14 +32,14 @@ public class SecurityFilter extends OncePerRequestFilter {
 		if(token != null) {
 			String login = tokenService.validateToken(token);
 			UserDetails user = userRepository.findByLogin(login);
-			
+
 			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		filterChain.doFilter(request, response);
-		
+
 	}
-	
+
 	public String recoverToken(HttpServletRequest request) {
 		String authHeader = request.getHeader("Authorization");
 		if(authHeader == null) return null;
