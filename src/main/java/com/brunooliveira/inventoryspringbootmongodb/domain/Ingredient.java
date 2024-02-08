@@ -5,13 +5,19 @@ import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@Document("ingredients")
+@JsonPropertyOrder({"id", "ingredient_name", "quantity", "icon", "description"})
 public class Ingredient implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
+	@Field("ingredient_name")
 	private String ingredientName;
 	private Integer quantity;
 	private String icon;
@@ -36,6 +42,7 @@ public class Ingredient implements Serializable {
 		this.id = id;
 	}
 
+	@JsonProperty("ingredient_name")
 	public String getIngredientName() {
 		return ingredientName;
 	}

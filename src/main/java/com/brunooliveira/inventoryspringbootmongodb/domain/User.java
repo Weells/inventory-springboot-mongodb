@@ -1,18 +1,20 @@
 package com.brunooliveira.inventoryspringbootmongodb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Document
+@Document("users")
 public class User implements Serializable, UserDetails {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,6 +24,9 @@ public class User implements Serializable, UserDetails {
 	private String login;
 	private String password;
 	private UserRole role;
+	
+	@DBRef
+	private List<UserCollections> collections = new ArrayList<>();
 
 	public User( ) {
 	}
@@ -64,6 +69,14 @@ public class User implements Serializable, UserDetails {
 
 	public void setRole(UserRole role) {
 		this.role = role;
+	}
+	
+	public List<UserCollections> getCollections() {
+		return collections;
+	}
+	
+	public void setCollections(List<UserCollections> collections) {
+		this.collections = collections;
 	}
 
 	@Override

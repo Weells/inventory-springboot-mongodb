@@ -8,13 +8,19 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@Document("recipes")
+@JsonPropertyOrder({"id", "recipe_name", "quantity", "icon", "description"})
 public class Recipe implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
+	@Field("recipe_name")
 	private String recipeName;
 	private Integer quantity;
 	private String icon;
@@ -42,7 +48,8 @@ public class Recipe implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
+	@JsonProperty("recipe_name")
 	public String getRecipeName() {
 		return recipeName;
 	}

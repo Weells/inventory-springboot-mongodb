@@ -41,8 +41,8 @@ public class IngredientsFolderService {
 	}
 
 	private void updateData(IngredientsFolder updatedIngredientsFolder, IngredientsFolder obj) {
-		if(obj.getIngredientsFolderName() != null) updatedIngredientsFolder.setIngredientsFolderName(obj.getIngredientsFolderName());
-		if(obj.getIcon() != null) updatedIngredientsFolder.setIcon(obj.getIcon());
+		if(obj.getFolderName() != null) updatedIngredientsFolder.setFolderName(obj.getFolderName());
+		if(obj.getFolderIcon() != null) updatedIngredientsFolder.setFolderIcon(obj.getFolderIcon());
 		if(!obj.getIngredients().isEmpty()) updatedIngredientsFolder.setIngredients(obj.getIngredients());
 	}
 }
