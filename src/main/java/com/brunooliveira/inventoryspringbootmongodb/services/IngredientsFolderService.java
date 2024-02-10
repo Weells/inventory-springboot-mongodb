@@ -20,6 +20,10 @@ public class IngredientsFolderService {
 		return rep.findAll();
 	}
 	
+	public List<IngredientsFolder> findByCreatedByUserId(String userId){
+		return rep.findByCreatedByUserId(userId);
+	};
+	
 	public IngredientsFolder findById(String id) {
 		Optional<IngredientsFolder> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));

@@ -8,11 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"id", "folder_name", "folder_icon"})
+@JsonPropertyOrder({"id", "created_by_user_id", "folder_name", "folder_icon"})
 public abstract class UserCollections {
 
 	@Id
 	protected String id;
+	
+	@Field("created_by_user_id")
+	protected String createdByUserId;
 	
 	@Field("folder_name")
 	protected String folderName;
@@ -34,6 +37,15 @@ public abstract class UserCollections {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	@JsonProperty(value="created_by_user_id")
+	public String getCreatedByUserId() {
+		return createdByUserId;
+	}
+	
+	public void setCreatedByUserId(String createdByUserId) {
+		this.createdByUserId = createdByUserId;
 	}
 
 	@JsonProperty(value="folder_name")
