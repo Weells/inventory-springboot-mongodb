@@ -21,7 +21,6 @@ import com.brunooliveira.inventoryspringbootmongodb.domain.IngredientsFolder;
 import com.brunooliveira.inventoryspringbootmongodb.domain.User;
 import com.brunooliveira.inventoryspringbootmongodb.services.AuthorizationService;
 import com.brunooliveira.inventoryspringbootmongodb.services.IngredientsFolderService;
-import com.brunooliveira.inventoryspringbootmongodb.services.exception.ObjectNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -46,13 +45,8 @@ public class IngredientsFolderResources {
 	@GetMapping(value="/{folderId}")
 	public ResponseEntity<IngredientsFolder> findById(@PathVariable String folderId,
 			HttpServletRequest request) {
-		User user = this.validateUserRequest(folderId, request);
-		List<IngredientsFolder> list = folderService.findByCreatedByUserId(user.getId());
-		IngredientsFolder obj = list
-				.stream()
-				.filter(folder -> folder.getId().equals(folderId))
-				.findFirst()
-				.orElseThrow(() -> new ObjectNotFoundException("Pasta não encontrada"));
+		this.validateUserRequest(folderId, request);
+		IngredientsFolder obj = folderService.findById(folderId);
 		return ResponseEntity.ok().body(obj);
 	}
 	

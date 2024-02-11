@@ -45,4 +45,8 @@ public class RecipesFolderService {
 		if(obj.getFolderIcon() != null) updatedRecipesFolder.setFolderIcon(obj.getFolderIcon());
 		if(!obj.getRecipes().isEmpty()) updatedRecipesFolder.setRecipes(obj.getRecipes());
 	}
+
+	public List<RecipesFolder> findByCreatedByUserId(String userId) {
+		return rep.findByCreatedByUserId(userId);
+	}
 }
