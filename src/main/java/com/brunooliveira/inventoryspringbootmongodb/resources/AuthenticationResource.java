@@ -17,13 +17,12 @@ import com.brunooliveira.inventoryspringbootmongodb.domain.User;
 import com.brunooliveira.inventoryspringbootmongodb.domain.dto.AuthenticationDTO;
 import com.brunooliveira.inventoryspringbootmongodb.domain.dto.LoginResponseDTO;
 import com.brunooliveira.inventoryspringbootmongodb.domain.dto.RegisterDTO;
-import com.brunooliveira.inventoryspringbootmongodb.domain.infra.security.CookieService;
 import com.brunooliveira.inventoryspringbootmongodb.domain.infra.security.TokenService;
 import com.brunooliveira.inventoryspringbootmongodb.repositories.UserRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500", allowCredentials="true")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping(value="/auth")
 public class AuthenticationResource {
@@ -42,9 +41,8 @@ public class AuthenticationResource {
 		UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
 		Authentication auth = this.authenticationManager.authenticate(usernamePassword);
 		String token = tokenService.generateToken((User) auth.getPrincipal());
-		CookieService.setCookie(response, "token", token);
 		
-		return ResponseEntity.ok(new LoginResponseDTO(token));
+		return ResponseEntity.ok().body(new LoginResponseDTO(token));
 	}
 	
 	@PostMapping("/register")
