@@ -7,24 +7,24 @@ import java.util.List;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("ingredients_folders")
-public class IngredientsFolder extends UserCollections implements Serializable {
+@Document("items_folders")
+public class ItemsFolder extends UserCollections implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	public IngredientsFolder(String id, String folderName, String folderIcon) {
+	public ItemsFolder(String id, String folderName, String folderIcon) {
 		super(id, folderName, folderIcon);
 	}
 
 	@DBRef
-	private List<Ingredient> ingredients = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	
-	public IngredientsFolder() {}
+	public ItemsFolder() {}
 
-	public List<Ingredient> getIngredients() {
-		return ingredients;
+	public List<Item> getItems() {
+		return items;
 	}
 	
-	public void setIngredients(List<Ingredient> ingredients) {
-		this.ingredients = ingredients;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 }

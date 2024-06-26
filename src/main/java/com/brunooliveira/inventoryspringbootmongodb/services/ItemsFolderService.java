@@ -6,30 +6,30 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.brunooliveira.inventoryspringbootmongodb.domain.IngredientsFolder;
-import com.brunooliveira.inventoryspringbootmongodb.repositories.IngredientsFolderRepository;
+import com.brunooliveira.inventoryspringbootmongodb.domain.ItemsFolder;
+import com.brunooliveira.inventoryspringbootmongodb.repositories.ItemsFolderRepository;
 import com.brunooliveira.inventoryspringbootmongodb.services.exception.ObjectNotFoundException;
 
 @Service
-public class IngredientsFolderService {
+public class ItemsFolderService {
 
 	@Autowired
-	private IngredientsFolderRepository rep;
+	private ItemsFolderRepository rep;
 	
-	public List<IngredientsFolder> findAll(){
+	public List<ItemsFolder> findAll(){
 		return rep.findAll();
 	}
 	
-	public List<IngredientsFolder> findByCreatedByUserId(String userId){
+	public List<ItemsFolder> findByCreatedByUserId(String userId){
 		return rep.findByCreatedByUserId(userId);
 	};
 	
-	public IngredientsFolder findById(String id) {
-		Optional<IngredientsFolder> obj = rep.findById(id);
+	public ItemsFolder findById(String id) {
+		Optional<ItemsFolder> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
-	public IngredientsFolder insert(IngredientsFolder obj) {
+	public ItemsFolder insert(ItemsFolder obj) {
 		return rep.insert(obj);
 	}
 	
@@ -38,15 +38,15 @@ public class IngredientsFolderService {
 		rep.deleteById(id);
 	}
 	
-	public IngredientsFolder update(IngredientsFolder obj) {
-		IngredientsFolder updatedIngredientsFolder = findById(obj.getId());
-		updateData(updatedIngredientsFolder, obj);
-		return rep.save(updatedIngredientsFolder);
+	public ItemsFolder update(ItemsFolder obj) {
+		ItemsFolder updatedItemsFolder = findById(obj.getId());
+		updateData(updatedItemsFolder, obj);
+		return rep.save(updatedItemsFolder);
 	}
 
-	private void updateData(IngredientsFolder updatedIngredientsFolder, IngredientsFolder obj) {
-		if(obj.getFolderName() != null) updatedIngredientsFolder.setFolderName(obj.getFolderName());
-		if(obj.getFolderIcon() != null) updatedIngredientsFolder.setFolderIcon(obj.getFolderIcon());
-		if(!obj.getIngredients().isEmpty()) updatedIngredientsFolder.setIngredients(obj.getIngredients());
+	private void updateData(ItemsFolder updatedItemsFolder, ItemsFolder obj) {
+		if(obj.getFolderName() != null) updatedItemsFolder.setFolderName(obj.getFolderName());
+		if(obj.getFolderIcon() != null) updatedItemsFolder.setFolderIcon(obj.getFolderIcon());
+		if(!obj.getItems().isEmpty()) updatedItemsFolder.setItems(obj.getItems());
 	}
 }

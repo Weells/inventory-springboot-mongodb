@@ -17,41 +17,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.brunooliveira.inventoryspringbootmongodb.domain.IngredientsFolder;
+import com.brunooliveira.inventoryspringbootmongodb.domain.ItemsFolder;
 import com.brunooliveira.inventoryspringbootmongodb.domain.User;
 import com.brunooliveira.inventoryspringbootmongodb.services.AuthorizationService;
-import com.brunooliveira.inventoryspringbootmongodb.services.IngredientsFolderService;
+import com.brunooliveira.inventoryspringbootmongodb.services.ItemsFolderService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
-@RequestMapping(value="/ingredientsfolders")
-public class IngredientsFolderResources {
+@RequestMapping(value="/itemsfolders")
+public class ItemsFolderResources {
 	
 	@Autowired
-	private IngredientsFolderService folderService;
+	private ItemsFolderService folderService;
 	
 	@Autowired
 	private AuthorizationService authorizationService;
 
 	@GetMapping
-	public ResponseEntity<List<IngredientsFolder>> findAll(HttpServletRequest request) {
+	public ResponseEntity<List<ItemsFolder>> findAll(HttpServletRequest request) {
 		User user = authorizationService.getRequestUser(request);
-		List<IngredientsFolder> list = folderService.findByCreatedByUserId(user.getId());
+		List<ItemsFolder> list = folderService.findByCreatedByUserId(user.getId());
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value="/{folderId}")
-	public ResponseEntity<IngredientsFolder> findById(@PathVariable String folderId,
+	public ResponseEntity<ItemsFolder> findById(@PathVariable String folderId,
 			HttpServletRequest request) {
 		this.validateUserRequest(folderId, request);
-		IngredientsFolder obj = folderService.findById(folderId);
+		ItemsFolder obj = folderService.findById(folderId);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody IngredientsFolder obj,
+	public ResponseEntity<Void> insert(@RequestBody ItemsFolder obj,
 			HttpServletRequest request) {
 		User user = authorizationService.getRequestUser(request);
 		obj.setCreatedByUserId(user.getId());
@@ -65,14 +65,15 @@ public class IngredientsFolderResources {
 	}
 	
 	@DeleteMapping(value="/{folderId}")
-	public ResponseEntity<Void> delete(@PathVariable String folderId, HttpServletRequest request){
+	public ResponseEntity<Void> delete(@PathVariable String folderId,
+			HttpServletRequest request){
 		this.validateUserRequest(folderId, request);
 		folderService.delete(folderId);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping(value="/{folderId}")
-	public ResponseEntity<Void> update(@RequestBody IngredientsFolder updatedIngredientsFolder,
+	public ResponseEntity<Void> update(@RequestBody ItemsFolder updatedIngredientsFolder,
 			@PathVariable String folderId, HttpServletRequest request) {
 		this.validateUserRequest(folderId, request);
 		updatedIngredientsFolder.setId(folderId);
@@ -82,10 +83,11 @@ public class IngredientsFolderResources {
 	
 	private User validateUserRequest(String folderId, HttpServletRequest request) {
 		User user = authorizationService.getRequestUser(request);
-		IngredientsFolder folder = folderService.findById(folderId);
+		ItemsFolder folder = folderService.findById(folderId);
 		if(!folder.getCreatedByUserId().equals(user.getId())) {
 			throw new BadCredentialsException("Você não tem acesso a esta pasta");
 		}
 		return user;
 	}
+	
 }

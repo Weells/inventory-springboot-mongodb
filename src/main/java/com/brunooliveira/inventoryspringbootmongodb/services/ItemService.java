@@ -6,26 +6,30 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.brunooliveira.inventoryspringbootmongodb.domain.Ingredient;
-import com.brunooliveira.inventoryspringbootmongodb.repositories.IngredientRepository;
+import com.brunooliveira.inventoryspringbootmongodb.domain.Item;
+import com.brunooliveira.inventoryspringbootmongodb.repositories.ItemRepository;
 import com.brunooliveira.inventoryspringbootmongodb.services.exception.ObjectNotFoundException;
 
 @Service
-public class IngredientService {
+public class ItemService {
 
 	@Autowired
-	private IngredientRepository rep;
+	private ItemRepository rep;
 	
-	public List<Ingredient> findAll(){
+	public List<Item> findAll(){
 		return rep.findAll();
 	}
 	
-	public Ingredient findById(String id) {
-		Optional<Ingredient> obj = rep.findById(id);
+	public List<Item> findByCreatedByUserId(String userId){
+		return rep.findByCreatedByUserId(userId);
+	};
+	
+	public Item findById(String id) {
+		Optional<Item> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
-	public Ingredient insert(Ingredient obj) {
+	public Item insert(Item obj) {
 		return rep.insert(obj);
 	}
 	
@@ -34,15 +38,16 @@ public class IngredientService {
 		rep.deleteById(id);
 	}
 	
-	public Ingredient update(Ingredient obj) {
-		Ingredient updatedIngredient = findById(obj.getId());
-		updateData(updatedIngredient, obj);
-		return rep.save(updatedIngredient);
+	public Item update(Item obj) {
+		Item updatedItem = findById(obj.getId());
+		updateData(updatedItem, obj);
+		return rep.save(updatedItem);
 	}
 
-	private void updateData(Ingredient updatedIngredient, Ingredient obj) {
-		if(obj.getIngredientName() != null) updatedIngredient.setIngredientName(obj.getIngredientName());
-		if(obj.getQuantity() != null) updatedIngredient.setQuantity(obj.getQuantity());
-		if(obj.getIcon() != null) updatedIngredient.setIcon(obj.getIcon());
+	private void updateData(Item updatedItem, Item obj) {
+		if(obj.getItemName() != null) updatedItem.setItemName(obj.getItemName());
+		if(obj.getQuantity() != null) updatedItem.setQuantity(obj.getQuantity());
+		if(obj.getItemIcon() != null) updatedItem.setItemIcon(obj.getItemIcon());
+		if(!obj.getComponentItems().isEmpty()) updatedItem.setComponentItems(obj.getComponentItems());
 	}
 }
